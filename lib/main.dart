@@ -26,11 +26,34 @@ class AboutDesktop extends StatelessWidget {
   }
 }
 
-class InfoArea extends StatelessWidget {
+
+class InfoArea extends StatefulWidget {
   const InfoArea({
     Key key,
   }) : super(key: key);
 
+  @override
+  _InfoAreaState createState() => _InfoAreaState();
+}
+
+class _InfoAreaState extends State<InfoArea> {
+Widget body=AboutPage();
+  onBtm1Press(){
+    setState(() {
+    body=AboutPage();   
+    });
+
+  }
+  onBtm2Press(){
+    setState(() {
+     body=WorkPage(); 
+    });
+  }
+  onBtm3Press(){
+    setState(() {
+     body=ContPage(); 
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -40,15 +63,41 @@ class InfoArea extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-              Text("About me"),
-              Text("Work"),
-              Text("Contact")
+              FlatButton(child: Text("About me"),onPressed: onBtm1Press,),
+              FlatButton(child: Text("Work"),onPressed: onBtm2Press,),
+              FlatButton(child: Text("Contact"),onPressed: onBtm3Press,)
             ],),
           ),
 
-          Expanded(child: Center(child: Container(width: 300, child: Text("Hello world"),)),)
+           Expanded(child: body,)
       ],
     );
+  }
+}
+
+class AboutPage extends StatelessWidget {
+  const AboutPage({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Container(width: 300, child: Text("Приветствую, меня зовут Арсений запорожец мне 16 лет и я ученик 10 физ. математического класса гимназии №1 им. А.А. Иноземцева"),));
+  }
+}
+
+class WorkPage extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Container(width: 300, child: Text("Пусто"),));
+  }
+}
+
+class ContPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Container(width: 300, child: Text("Телефон: +7**********, E-mail: **********@yandex.com"),));
   }
 }
 
@@ -79,6 +128,7 @@ class AvatarArea extends StatelessWidget {
 }
 
 class AboutMobile extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
